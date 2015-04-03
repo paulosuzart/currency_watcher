@@ -1,0 +1,14 @@
+[package]
+
+name = "currency_watcher"
+version = "0.0.1"
+authors = [ "Paulo Suzart" ]
+
+[dependencies]
+hyper = "*"
+rustc-serialize = "*"
+
+
+[[bin]]
+
+name = "currency_watcher"
