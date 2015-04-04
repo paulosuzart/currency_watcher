@@ -16,17 +16,20 @@ use hyper::header::ConnectionOption;
 use mashape::CurrencyResponse;
 use std::str::FromStr;
 
+static KEY_STR: &'static str = env!("MASHAP_KEY");
+
+
 #[inline(always)]
 fn print_usage(program: &str, opts: Options) {
     let brief = format!("Usage: {} [options]", program);
     print!("{}", opts.usage(&brief));
 }
 
-fn fetch (key_str :&str) -> f32 {
+fn fetch () -> f32 {
     let mut client = Client::new();
     let mut res = client.get("https://currencyconverter.p.mashape.com?from=USD&to=BRL&from_amount=1")
     .header(Connection(vec![ConnectionOption::Close]))
-    .header(header::XMashapeKey {key: key_str.to_string()})
+    .header(header::XMashapeKey {key: KEY_STR.to_string()})
     .send().unwrap();
 
     let mut body = String::new();
@@ -37,7 +40,7 @@ fn fetch (key_str :&str) -> f32 {
 
 
 fn main () {
-    let key_str: &'static str = env!("MASHAP_KEY");
+
     let args: Vec<String> = env::args().collect();
     let program = args[0].clone();
     let mut opts = Options::new();
@@ -63,7 +66,7 @@ fn main () {
 
     loop {
 
-        let amount = fetch(key_str);
+        let amount = fetch();
         let diff = last_collected - amount;
         if diff.abs() >= delta {
             println!("Ooops! Huge variation {}, before: {}, now: {}", diff, last_collected, amount);
