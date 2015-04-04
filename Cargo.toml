@@ -7,7 +7,7 @@ authors = [ "Paulo Suzart" ]
 [dependencies]
 hyper = "*"
 rustc-serialize = "*"
-
+getopts = "*"
 
 [[bin]]
 
