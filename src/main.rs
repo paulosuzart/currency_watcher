@@ -59,12 +59,7 @@ fn main () {
         }
     };
 
-    //let delta = f32::from_str(deltaOpt.unwrap().as_ref()).unwrap();
-    // let mut args = std::env::args();
     let mut last_collected = 0.0;
-    // args.next();
-    // let delta = f32::from_str(args.next().unwrap().as_ref()).unwrap();
-
 
     loop {
 
